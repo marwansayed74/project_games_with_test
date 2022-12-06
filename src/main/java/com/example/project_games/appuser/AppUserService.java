@@ -3,6 +3,8 @@ package com.example.project_games.appuser;
 import com.example.project_games.registration.token.ConfirmationToken;
 import com.example.project_games.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,17 +15,21 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
 public class AppUserService implements UserDetailsService {
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
-    private final AppUserRepository appUserRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ConfirmationTokenService confirmationTokenService;
+    @Autowired
+    private  AppUserRepository appUserRepository;
+    @Autowired
+
+    private  BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+
+    private  ConfirmationTokenService confirmationTokenService;
 
     @Override
-    public UserDetails loadUserByUsername(String email)
+    public AppUser loadUserByUsername(String email)
             throws UsernameNotFoundException {
         return appUserRepository.findByEmail(email)
                 .orElseThrow(() ->

@@ -6,6 +6,7 @@ import com.example.project_games.appuser.AppUserService;
 import com.example.project_games.registration.token.ConfirmationToken;
 import com.example.project_games.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +16,16 @@ import java.time.LocalDateTime;
 @Service
 @AllArgsConstructor
 public class RegistrationService {
-    private final AppUserService appUserService;
-    private final AppUserRepository appUserRepository;
-    private final EmailValidator emailValidator;
-    private final ConfirmationTokenService confirmationTokenService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private  AppUserService appUserService;
+    @Autowired
+    private  AppUserRepository appUserRepository;
+    @Autowired
+    private  EmailValidator emailValidator;
+    @Autowired
+    private  ConfirmationTokenService confirmationTokenService;
+    @Autowired
+    private  BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.

@@ -66,7 +66,7 @@ public class DiceScoreService {
             appUser.setScore(statment);
             appUser.setLocked(false);
             appUserRepository.save(appUser);
-            return  " " + statment;
+            return  "" + statment;
         }
         return statment;
     }
