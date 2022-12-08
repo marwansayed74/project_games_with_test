@@ -4,24 +4,16 @@ import com.example.project_games.appuser.AppUser;
 import com.example.project_games.appuser.AppUserRepository;
 import com.example.project_games.appuser.AppUserRole;
 import com.example.project_games.appuser.AppUserService;
-import com.example.project_games.registration.token.ConfirmationToken;
-import com.example.project_games.registration.token.ConfirmationTokenRepository;
-import com.example.project_games.registration.token.ConfirmationTokenService;
-import com.example.project_games.security.PasswordEncoder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -66,10 +58,7 @@ class RegistrationServiceTest {
         appUser.setEmail("marwan@gmail.com");
         appUser.setPassword("password");
         appUser.setEnabled(true);
-
-
         LoginResponse loginResponse = new LoginResponse(appUser.getEmail(), appUser.getPassword());
-
         String ss="you are in";
 //        when
         when(appUserRepository.findByEmail(appUser.getEmail())).thenReturn(Optional.of(appUser));

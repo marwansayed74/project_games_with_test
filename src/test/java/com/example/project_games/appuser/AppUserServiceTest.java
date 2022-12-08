@@ -40,7 +40,6 @@ class AppUserServiceTest {
     AppUser appUser=new AppUser();
     String ss="ss@gmail.com";
     appUser.setEmail(ss);
-
     //when
     when(appUserRepository.findByEmail(appUser.getEmail())).thenReturn(Optional.of(appUser));
     AppUser appUser1 =appUserService.loadUserByUsername(ss);
@@ -59,15 +58,11 @@ class AppUserServiceTest {
         appUser.setPassword("password");
         //when
         when(bCryptPasswordEncoder.encode(appUser.getPassword())).thenReturn("1qqqqqs");
-
         appUserService.signUpUser(appUser);
-
         ArgumentCaptor<AppUser> appUserArgumentCaptor =ArgumentCaptor.forClass(AppUser.class);
         verify(appUserRepository).save(appUserArgumentCaptor.capture());
-
         AppUser capturedAppUser=appUserArgumentCaptor.getValue();
         assertThat(capturedAppUser).isEqualTo(appUser);
-
     }
 
 }
