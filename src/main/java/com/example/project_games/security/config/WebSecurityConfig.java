@@ -1,5 +1,5 @@
 package com.example.project_games.security.config;
-import com.example.project_games.appuser.AppUserService;
+import com.example.project_games.services.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.lang.String;
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity

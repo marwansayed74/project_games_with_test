@@ -1,6 +1,6 @@
 package com.example.project_games.registration.token;
 
-import com.example.project_games.appuser.AppUser;
+import com.example.project_games.entitys.AppUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

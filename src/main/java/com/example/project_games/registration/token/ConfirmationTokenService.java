@@ -1,4 +1,6 @@
 package com.example.project_games.registration.token;
+import com.example.project_games.registration.token.ConfirmationToken;
+import com.example.project_games.registration.token.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
