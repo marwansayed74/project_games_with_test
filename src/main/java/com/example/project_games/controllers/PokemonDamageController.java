@@ -19,7 +19,7 @@ public class PokemonDamageController {
     }
     @PostMapping(path = "pokemonDamage")
     public ResponseEntity<String> pokemonDamage(@RequestBody PokemonDamage pokemon) {
-        pokemonDamageService.pokemonDamage(pokemon);
-        return new ResponseEntity<>("play done", HttpStatus.OK);
+
+        return new ResponseEntity<>(pokemonDamageService.pokemonDamage(pokemon), HttpStatus.OK);
     }
 }

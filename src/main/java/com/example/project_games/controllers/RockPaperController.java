@@ -21,12 +21,12 @@ public class RockPaperController {
 
     @PostMapping(path = "/play")
     public ResponseEntity<String> playRock(@RequestBody RockPaper rock) {
-        rockPaperService.playRock(rock);
+
 //        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 //                .path("/play")
 //                .buildAndExpand()
 //                .toUri();
  //       return ResponseEntity.created(location).build();
-       return new ResponseEntity<>("play done", HttpStatus.OK);
+       return new ResponseEntity<>(rockPaperService.playRock(rock), HttpStatus.OK);
     }
 }

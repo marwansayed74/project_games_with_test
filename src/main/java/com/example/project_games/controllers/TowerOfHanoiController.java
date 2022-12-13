@@ -19,7 +19,6 @@ public class TowerOfHanoiController {
     }
     @PostMapping(path = "tower")
     public ResponseEntity<String> playTowerOfHanoi(@RequestBody TowerOfHanoi tower) {
-        towerOfHanoiService.playTowerOfHanoi(tower);
-        return new ResponseEntity<>("play done", HttpStatus.OK);
+        return new ResponseEntity<>(towerOfHanoiService.playTowerOfHanoi(tower), HttpStatus.OK);
     }
 }

@@ -15,19 +15,15 @@ public class RegistrationController {
 
     @PostMapping(path = "/signup")
     public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
-        registrationService.register(request);
-        return new ResponseEntity<>("play done", HttpStatus.CREATED);
+        return new ResponseEntity<>(registrationService.register(request), HttpStatus.CREATED);
     }
     @PostMapping(path = "/login")
     public ResponseEntity<String> login(@RequestBody LoginResponse response) {
-        registrationService.login(response);
-        return  new ResponseEntity<>("user sign in done ", HttpStatus.OK);
+        return  new ResponseEntity<>(registrationService.login(response), HttpStatus.OK);
     }
     @GetMapping(path = "/confirm")
     public ResponseEntity<String> confirm(@RequestParam("token") String token) {
-        registrationService.confirmToken(token);
-        return new ResponseEntity<>("user sign in done ", HttpStatus.OK);
-
+        return new ResponseEntity<>(registrationService.confirmToken(token), HttpStatus.OK);
     }
 
 

@@ -19,7 +19,7 @@ public class DiceScoreController {
     }
     @PostMapping(path = "dice")
     public ResponseEntity<String> playDiceScore(@RequestBody DiceScore dice) {
-        diceScoreService.diceScore(dice);
-        return new ResponseEntity<>("play done", HttpStatus.OK);
+
+        return new ResponseEntity<>(diceScoreService.diceScore(dice), HttpStatus.OK);
     }
 }

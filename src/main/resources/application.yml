@@ -3,6 +3,10 @@ server:
   include-message: always
   include-binding-errors: always
 
+management:
+ security:
+  enabled: false
+
 spring:
  datasource:
   password: 2204
