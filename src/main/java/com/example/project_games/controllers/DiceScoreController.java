@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/v1/registration")
+@RequestMapping(path = "/api/v1/registration")
 public class DiceScoreController {
     private final DiceScoreService diceScoreService;
 
     public DiceScoreController(DiceScoreService diceScoreService) {
         this.diceScoreService = diceScoreService;
     }
-    @PostMapping(path = "dice")
+    @PostMapping(path = "/dice")
     public ResponseEntity<String> playDiceScore(@RequestBody DiceScore dice) {
 
         return new ResponseEntity<>(diceScoreService.diceScore(dice), HttpStatus.OK);

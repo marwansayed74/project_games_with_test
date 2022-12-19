@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.Access;
 import java.lang.*;
 @Configuration
-
 public class PasswordEncoder {
 
     @Bean

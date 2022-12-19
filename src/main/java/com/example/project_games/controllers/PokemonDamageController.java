@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/v1/registration")
+@RequestMapping(path = "/api/v1/registration")
 public class PokemonDamageController {
     private final PokemonDamageService pokemonDamageService;
 
     public PokemonDamageController(PokemonDamageService pokemonDamageService) {
         this.pokemonDamageService = pokemonDamageService;
     }
-    @PostMapping(path = "pokemonDamage")
+    @PostMapping(path = "/pokemonDamage")
     public ResponseEntity<String> pokemonDamage(@RequestBody PokemonDamage pokemon) {
 
         return new ResponseEntity<>(pokemonDamageService.pokemonDamage(pokemon), HttpStatus.OK);

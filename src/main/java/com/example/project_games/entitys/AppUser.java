@@ -1,9 +1,6 @@
 package com.example.project_games.entitys;
 import com.example.project_games.appuser.AppUserRole;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,14 +9,12 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
 public class AppUser implements UserDetails{
-
-
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
@@ -41,7 +36,7 @@ public class AppUser implements UserDetails{
     private Boolean locked =false;
     private Boolean enabled = false;
 
-    public AppUser(String firstName,
+        public AppUser(String firstName,
                    String lastName,
                    String email,
                    String password,
@@ -54,7 +49,6 @@ public class AppUser implements UserDetails{
         this.score=score;
         this.appUserRole = appUserRole;
     }
-
     public AppUser(String firstName, String lastName, String email, String password, AppUserRole appUserRole) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,8 +56,6 @@ public class AppUser implements UserDetails{
         this.password = password;
         this.appUserRole = appUserRole;
     }
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =
@@ -79,14 +71,6 @@ public class AppUser implements UserDetails{
     @Override
     public String getUsername() {
         return email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     @Override

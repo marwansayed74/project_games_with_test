@@ -21,12 +21,10 @@ public class AppUserService implements UserDetailsService {
     @Autowired
     private AppUserRepository appUserRepository;
     @Autowired
-
     private  BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
 
     private ConfirmationTokenService confirmationTokenService;
-
     @Override
     public AppUser loadUserByUsername(String email)
             throws UsernameNotFoundException {
@@ -35,16 +33,12 @@ public class AppUserService implements UserDetailsService {
                         new UsernameNotFoundException(
                                 String.format(USER_NOT_FOUND_MSG, email)));
     }
-
     public String signUpUser(AppUser appUser) {
         boolean userExists = appUserRepository
                 .findByEmail(appUser.getEmail())
                 .isPresent();
 
         if (userExists) {
-            // TODO check of attributes are the same and
-            // TODO if email not confirmed send confirmation email.
-
             throw new IllegalStateException("email already taken");
         }
 

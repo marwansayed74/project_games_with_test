@@ -69,7 +69,6 @@ public class RegistrationService {
                 confirmationToken.getAppUser().getEmail());
         return "confirmed";
     }
-
     public String login(LoginResponse response) {
         AppUser appUser = appUserRepository.findByEmail(response.getEmail()).orElseThrow(() ->
                 new IllegalStateException("user with email" + response.getEmail() + "error"));
