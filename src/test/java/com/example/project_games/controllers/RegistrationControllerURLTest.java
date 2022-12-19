@@ -1,7 +1,7 @@
 package com.example.project_games.controllers;
 
 import com.example.project_games.appuser.AppUserRepository;
-import com.example.project_games.entitys.LoginResponse;
+
 import com.example.project_games.entitys.RegistrationRequest;
 import com.example.project_games.security.PasswordEncoder;
 import com.example.project_games.services.RegistrationService;
@@ -34,12 +34,14 @@ class RegistrationControllerURLTest {
 
     @Test
     public void loginUrltest() throws Exception {
-        LoginResponse loginResponse=new LoginResponse("marwangmail.com","password");
+        RegistrationRequest registrationRequest=new RegistrationRequest();
+        registrationRequest.setEmail("marwangmail.com");
+        registrationRequest.setPassword("password");
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Authentication authentication = mock(Authentication.class);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        ResponseEntity<String> responseEntity = registrationController.login(loginResponse);
+        ResponseEntity<String> responseEntity = registrationController.login(registrationRequest);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
     }
 

@@ -1,5 +1,4 @@
 package com.example.project_games.controllers;
-import com.example.project_games.entitys.LoginResponse;
 import com.example.project_games.entitys.RegistrationRequest;
 import com.example.project_games.services.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -18,8 +17,8 @@ public class RegistrationController {
         return new ResponseEntity<>(registrationService.register(request), HttpStatus.CREATED);
     }
     @PostMapping(path = "/login")
-    public ResponseEntity<String> login(@RequestBody LoginResponse response) {
-        return  new ResponseEntity<>(registrationService.login(response), HttpStatus.OK);
+    public ResponseEntity<String> login(@RequestBody RegistrationRequest request) {
+        return  new ResponseEntity<>(registrationService.login(request), HttpStatus.OK);
     }
     @GetMapping(path = "/confirm")
     public ResponseEntity<String> confirm(@RequestParam("token") String token) {

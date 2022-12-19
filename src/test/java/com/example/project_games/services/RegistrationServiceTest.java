@@ -3,7 +3,6 @@ package com.example.project_games.services;
 import com.example.project_games.entitys.AppUser;
 import com.example.project_games.appuser.AppUserRepository;
 import com.example.project_games.appuser.AppUserRole;
-import com.example.project_games.entitys.LoginResponse;
 import com.example.project_games.entitys.RegistrationRequest;
 import com.example.project_games.registration.EmailValidator;
 import com.example.project_games.services.AppUserService;
@@ -62,13 +61,15 @@ class RegistrationServiceTest {
         appUser.setEmail("marwan@gmail.com");
         appUser.setPassword("password");
         appUser.setEnabled(true);
-        LoginResponse loginResponse = new LoginResponse(appUser.getEmail(), appUser.getPassword());
+        RegistrationRequest registrationRequest=new RegistrationRequest();
+        registrationRequest.setEmail(appUser.getEmail());
+        registrationRequest.setPassword(appUser.getPassword());
         String ss="you are in";
 //        when
         when(appUserRepository.findByEmail(appUser.getEmail())).thenReturn(Optional.of(appUser));
-        when(bCryptPasswordEncoder.matches(loginResponse.getPassword(),appUser.getPassword())).thenReturn(true);
+        when(bCryptPasswordEncoder.matches(registrationRequest.getPassword(),appUser.getPassword())).thenReturn(true);
 //        then
-        String ss2 =registrationService.login(loginResponse);
+        String ss2 =registrationService.login(registrationRequest);
         assertEquals(ss,ss2);
     }
 }

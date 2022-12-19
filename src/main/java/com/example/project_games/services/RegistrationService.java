@@ -3,7 +3,6 @@ import com.example.project_games.entitys.AppUser;
 import com.example.project_games.appuser.AppUserRepository;
 import com.example.project_games.appuser.AppUserRole;
 import com.example.project_games.registration.EmailValidator;
-import com.example.project_games.entitys.LoginResponse;
 import com.example.project_games.entitys.RegistrationRequest;
 import com.example.project_games.registration.token.ConfirmationToken;
 import com.example.project_games.registration.token.ConfirmationTokenService;
@@ -69,11 +68,11 @@ public class RegistrationService {
                 confirmationToken.getAppUser().getEmail());
         return "confirmed";
     }
-    public String login(LoginResponse response) {
-        AppUser appUser = appUserRepository.findByEmail(response.getEmail()).orElseThrow(() ->
-                new IllegalStateException("user with email" + response.getEmail() + "error"));
-        if(appUser.getEmail().equals(response.getEmail()) &&
-                bCryptPasswordEncoder.matches(response.getPassword(),appUser.getPassword())
+    public String login(RegistrationRequest request) {
+        AppUser appUser = appUserRepository.findByEmail(request.getEmail()).orElseThrow(() ->
+                new IllegalStateException("user with email" + request.getEmail() + "error"));
+        if(appUser.getEmail().equals(request.getEmail()) &&
+                bCryptPasswordEncoder.matches(request.getPassword(),appUser.getPassword())
         && appUser.getEnabled())
         {
             appUser.setLocked(true);
