@@ -1,6 +1,4 @@
 package com.example.project_games.registration.token;
-import com.example.project_games.registration.token.ConfirmationToken;
-import com.example.project_games.registration.token.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +9,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class ConfirmationTokenService {
-    private final ConfirmationTokenRepository confirmationTokenRepository;
+    private  ConfirmationTokenRepository confirmationTokenRepository;
 
     public void saveConfirmationToken(ConfirmationToken token) {
         confirmationTokenRepository.save(token);

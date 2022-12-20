@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/api/v1/registration")
 public class TowerOfHanoiController {
-    private final TowerOfHanoiService towerOfHanoiService ;
+    private  TowerOfHanoiService towerOfHanoiService ;
 
     public TowerOfHanoiController(TowerOfHanoiService towerOfHanoiService) {
         this.towerOfHanoiService = towerOfHanoiService;

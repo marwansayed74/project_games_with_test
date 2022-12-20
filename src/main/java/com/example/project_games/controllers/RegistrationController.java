@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/v1/registration")
 @AllArgsConstructor
 public class RegistrationController {
-    private final RegistrationService registrationService;
+    private  RegistrationService registrationService;
 
     @PostMapping(path = "/signup")
     public ResponseEntity<String> register(@RequestBody RegistrationRequestDTO request) {

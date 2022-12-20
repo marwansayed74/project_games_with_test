@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/api/v1/registration")
 public class PokemonDamageController {
-    private final PokemonDamageService pokemonDamageService;
+    private  PokemonDamageService pokemonDamageService;
 
     public PokemonDamageController(PokemonDamageService pokemonDamageService) {
         this.pokemonDamageService = pokemonDamageService;
