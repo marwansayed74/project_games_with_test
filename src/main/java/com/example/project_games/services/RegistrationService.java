@@ -3,7 +3,7 @@ import com.example.project_games.entitys.AppUser;
 import com.example.project_games.appuser.AppUserRepository;
 import com.example.project_games.appuser.AppUserRole;
 import com.example.project_games.registration.EmailValidator;
-import com.example.project_games.entitys.RegistrationRequest;
+import com.example.project_games.entitys.RegistrationRequestDTO;
 import com.example.project_games.registration.token.ConfirmationToken;
 import com.example.project_games.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class RegistrationService {
     @Autowired
     private  BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public String register(RegistrationRequest request) {
+    public String register(RegistrationRequestDTO request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
         if (!isValidEmail) {
@@ -68,7 +68,7 @@ public class RegistrationService {
                 confirmationToken.getAppUser().getEmail());
         return "confirmed";
     }
-    public String login(RegistrationRequest request) {
+    public String login(RegistrationRequestDTO request) {
         AppUser appUser = appUserRepository.findByEmail(request.getEmail()).orElseThrow(() ->
                 new IllegalStateException("user with email" + request.getEmail() + "error"));
         if(appUser.getEmail().equals(request.getEmail()) &&

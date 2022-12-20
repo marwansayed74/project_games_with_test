@@ -1,5 +1,5 @@
 package com.example.project_games.controllers;
-import com.example.project_games.entitys.RegistrationRequest;
+import com.example.project_games.entitys.RegistrationRequestDTO;
 import com.example.project_games.services.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,11 +13,11 @@ public class RegistrationController {
     private final RegistrationService registrationService;
 
     @PostMapping(path = "/signup")
-    public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<String> register(@RequestBody RegistrationRequestDTO request) {
         return new ResponseEntity<>(registrationService.register(request), HttpStatus.CREATED);
     }
     @PostMapping(path = "/login")
-    public ResponseEntity<String> login(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<String> login(@RequestBody RegistrationRequestDTO request) {
         return  new ResponseEntity<>(registrationService.login(request), HttpStatus.OK);
     }
     @GetMapping(path = "/confirm")

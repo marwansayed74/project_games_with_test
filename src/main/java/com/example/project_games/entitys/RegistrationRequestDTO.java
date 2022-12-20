@@ -6,12 +6,10 @@ import lombok.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @ToString
-public class RegistrationRequest {
+public class RegistrationRequestDTO {
     private  String firstName;
     private  String lastName;
     private  String email;
     private  String password;
 
-//    public RegistrationRequest(String s, String password) {
-//    }
 }

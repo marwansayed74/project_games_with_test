@@ -4,12 +4,14 @@ import com.example.project_games.entitys.AppUser;
 import com.example.project_games.appuser.AppUserRepository;
 import com.example.project_games.entitys.DiceScore;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class DiceScoreService {
-    private final AppUserRepository appUserRepository;
+    @Autowired
+    private  AppUserRepository appUserRepository;
     public String diceScore(DiceScore dice) {
         String statment = "error";
 

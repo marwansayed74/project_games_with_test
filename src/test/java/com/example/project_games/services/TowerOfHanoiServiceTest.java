@@ -20,28 +20,16 @@ import static org.mockito.Mockito.when;
 class TowerOfHanoiServiceTest {
     @InjectMocks
     private TowerOfHanoiService towerOfHanoiService;
-
     @Mock
     private AppUserRepository appUserRepository;
-
     @Test
     void playTowerOfHanoi() {
 
-        AppUser appUser=new AppUser();
-        appUser.setFirstName("marwan");
-        appUser.setLastName("sayed");
+        AppUser appUser=new AppUser("marwan","sayed","marwan@gmail.com","password",AppUserRole.USER);
         appUser.setLocked(true);
-        appUser.setEmail("marwan@gmail.com");
         appUser.setEnabled(true);
-        appUser.setAppUserRole(AppUserRole.USER);
-        appUser.setPassword("password");
-
-        TowerOfHanoi tower=new TowerOfHanoi();
-        tower.setDisk(5);
-
+        TowerOfHanoi tower=new TowerOfHanoi(5);
         when(appUserRepository.findByLocked(true)).thenReturn(Optional.of(appUser));
-        String real =towerOfHanoiService.playTowerOfHanoi(tower);
-
-        assertEquals("31.0",real);
+        assertEquals("31.0",towerOfHanoiService.playTowerOfHanoi(tower));
     }
 }

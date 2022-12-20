@@ -2,7 +2,7 @@ package com.example.project_games.controllers;
 
 import com.example.project_games.appuser.AppUserRepository;
 
-import com.example.project_games.entitys.RegistrationRequest;
+import com.example.project_games.entitys.RegistrationRequestDTO;
 import com.example.project_games.security.PasswordEncoder;
 import com.example.project_games.services.RegistrationService;
 import org.junit.jupiter.api.Test;
@@ -34,25 +34,25 @@ class RegistrationControllerURLTest {
 
     @Test
     public void loginUrltest() throws Exception {
-        RegistrationRequest registrationRequest=new RegistrationRequest();
-        registrationRequest.setEmail("marwangmail.com");
-        registrationRequest.setPassword("password");
+        RegistrationRequestDTO registrationRequestDTO =new RegistrationRequestDTO();
+        registrationRequestDTO.setEmail("marwangmail.com");
+        registrationRequestDTO.setPassword("password");
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Authentication authentication = mock(Authentication.class);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        ResponseEntity<String> responseEntity = registrationController.login(registrationRequest);
+        ResponseEntity<String> responseEntity = registrationController.login(registrationRequestDTO);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
     }
 
     @Test
     void registerUrltest() throws Exception {
-        RegistrationRequest registrationRequest =new RegistrationRequest("marwan","sayed","marwangmail.com","password");
+        RegistrationRequestDTO registrationRequestDTO =new RegistrationRequestDTO("marwan","sayed","marwangmail.com","password");
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Authentication authentication = mock(Authentication.class);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        ResponseEntity<String> responseEntity = registrationController.register(registrationRequest);
+        ResponseEntity<String> responseEntity = registrationController.register(registrationRequestDTO);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(201);
     }
     @Test

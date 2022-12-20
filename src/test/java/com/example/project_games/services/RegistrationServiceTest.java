@@ -3,10 +3,8 @@ package com.example.project_games.services;
 import com.example.project_games.entitys.AppUser;
 import com.example.project_games.appuser.AppUserRepository;
 import com.example.project_games.appuser.AppUserRole;
-import com.example.project_games.entitys.RegistrationRequest;
+import com.example.project_games.entitys.RegistrationRequestDTO;
 import com.example.project_games.registration.EmailValidator;
-import com.example.project_games.services.AppUserService;
-import com.example.project_games.services.RegistrationService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -37,19 +35,13 @@ class RegistrationServiceTest {
     @Test
     void register() {
         //        given
-        AppUser appUser =new AppUser();
-        appUser.setFirstName("marwan");
-        appUser.setLastName("sayed");
-        appUser.setEmail("marwan@gmail.com");
-        appUser.setPassword("password");
-        appUser.setAppUserRole(AppUserRole.USER);
-
+        AppUser appUser=new AppUser("marwan","sayed","marwan@gmail.com","password",AppUserRole.USER);
         //      when
         when(emailValidator.test(appUser.getEmail())).thenReturn(true);
         when(appUserService.signUpUser(appUser)).thenReturn("token");
 
         String tokenreal= registrationService.register(
-                new RegistrationRequest("marwan","sayed","marwan@gmail.com","password"));
+                new RegistrationRequestDTO("marwan","sayed","marwan@gmail.com","password"));
 //        then
         assertEquals("token",tokenreal);
     }
@@ -57,19 +49,17 @@ class RegistrationServiceTest {
     @Test
     void login() {
 //        given
-        AppUser appUser =new AppUser();
-        appUser.setEmail("marwan@gmail.com");
-        appUser.setPassword("password");
+        AppUser appUser=new AppUser("marwan","sayed","marwan@gmail.com","password",AppUserRole.USER);
+        appUser.setLocked(true);
         appUser.setEnabled(true);
-        RegistrationRequest registrationRequest=new RegistrationRequest();
-        registrationRequest.setEmail(appUser.getEmail());
-        registrationRequest.setPassword(appUser.getPassword());
-        String ss="you are in";
+        RegistrationRequestDTO registrationRequestDTO =new RegistrationRequestDTO();
+        registrationRequestDTO.setEmail(appUser.getEmail());
+        registrationRequestDTO.setPassword(appUser.getPassword());
+        String expected="you are in";
 //        when
         when(appUserRepository.findByEmail(appUser.getEmail())).thenReturn(Optional.of(appUser));
-        when(bCryptPasswordEncoder.matches(registrationRequest.getPassword(),appUser.getPassword())).thenReturn(true);
+        when(bCryptPasswordEncoder.matches(registrationRequestDTO.getPassword(),appUser.getPassword())).thenReturn(true);
 //        then
-        String ss2 =registrationService.login(registrationRequest);
-        assertEquals(ss,ss2);
+        assertEquals(expected,registrationService.login(registrationRequestDTO));
     }
 }

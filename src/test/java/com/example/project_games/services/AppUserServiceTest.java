@@ -1,6 +1,7 @@
 package com.example.project_games.services;
 
 import com.example.project_games.appuser.AppUserRepository;
+import com.example.project_games.appuser.AppUserRole;
 import com.example.project_games.entitys.AppUser;
 import com.example.project_games.registration.token.ConfirmationTokenService;
 import com.example.project_games.services.AppUserService;
@@ -51,11 +52,7 @@ class AppUserServiceTest {
     @Test
     void signUpUser() {
         //given
-        AppUser appUser=new AppUser();
-        appUser.setFirstName("marwan");
-        appUser.setLastName("sayed");
-        appUser.setEmail("marwan@gmail.com");
-        appUser.setPassword("password");
+        AppUser appUser=new AppUser("marwan","sayed","marwan@gmail.com","password", AppUserRole.USER);
         //when
         when(bCryptPasswordEncoder.encode(appUser.getPassword())).thenReturn("1qqqqqs");
         appUserService.signUpUser(appUser);
